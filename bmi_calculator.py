@@ -3,8 +3,8 @@
 
 #get user inputs
 def user_input():
-    weight = input("please enter your weight (kg) : ")
-    height = input("please enter your height : (m.cm)")
+    weight = float(input("please enter your weight (kg) : "))
+    height = float(input("please enter your height : (m.cm)"))
     return weight, height
 
 #calculate bmi
@@ -27,3 +27,11 @@ def show_result(bmi):
 
 
 #main
+def main():
+   weight, height =  user_input()
+   bmi = calculate_bmi(weight, height)
+   result = show_result(bmi)
+   print(result)
+    
+if __name__ == "__main__":
+    main()
