@@ -9,7 +9,7 @@ def user_input():
 
 #calculate bmi
 def calculate_bmi(weight, height):
-    bmi = weight // (height**2)
+    bmi = weight / (height**2)
     return bmi
 
 #show results
