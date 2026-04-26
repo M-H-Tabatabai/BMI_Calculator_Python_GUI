@@ -31,6 +31,7 @@ def main():
    weight, height =  user_input()
    bmi = calculate_bmi(weight, height)
    result = show_result(bmi)
+   print(bmi)
    print(result)
     
 if __name__ == "__main__":
