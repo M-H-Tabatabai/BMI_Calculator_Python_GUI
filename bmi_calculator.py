@@ -42,6 +42,10 @@ def main():
    label2 = ttk.Label(root, text=result_txt, font=("Arial", 14), anchor="center")
    label1.grid(row=0, column=0, padx=40, pady=5)
    label2.grid(row=1, column=0, padx=40, pady=5)
+   
+   btn_close = ttk.Button(root, text="بستن", command=root.destroy)
+   btn_close.grid(row=2, column=0, padx=40, pady=5)
+
    root.mainloop()
     
 if __name__ == "__main__":
