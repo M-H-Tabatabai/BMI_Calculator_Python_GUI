@@ -41,6 +41,10 @@ The application uses the standard classification system:
 
 Contributions, issues, and feature requests are welcome!
 
+👨‍💻 Author
+
+mohammad hossein
+
 ## 📝 License
 
 This project is open-source and available under the [MIT License](LICENSE).
