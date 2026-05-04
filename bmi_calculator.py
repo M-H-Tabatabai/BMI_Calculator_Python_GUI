@@ -1,29 +1,43 @@
 # imports and define global variable
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk,messagebox
 
 
 # get user inputs
-def user_input():
-    weight = float(input("please enter your weight (kg) : "))
-    height = float(input("please enter your height (m.cm) : "))
-    return weight, height
+# def user_input():
+#     weight = float(input("please enter your weight (kg) : "))
+#     height = float(input("please enter your height (m.cm) : "))
+#     return weight, height
 
 
 # calculate bmi
-def calculate_bmi(weight, height):
-    bmi = weight / (height**2)
-    return bmi
+def calculate_bmi(entry_weight, entry_height, label_bmi_value,label_category_value ):
+    try:
+        weight = float(entry_weight.get())
+        height = float(entry_height.get())
+
+        if height <= 0 or weight <= 0:
+            raise ValueError
+
+        bmi = weight / (height ** 2)
+        category = show_category(bmi)
+
+
+        label_bmi_value.config(text=f"{bmi:.2f}")
+        label_category_value.config(text=category)
+
+    except ValueError:
+        messagebox.showerror("خطا", "لطفاً مقادیر معتبر وارد کنید.")
 
 
 # show results
-def show_result(bmi):
+def show_category(bmi):
     if bmi < 18.5:
         return "under weight"
     elif bmi < 25:
         return "normal weight"
     elif bmi < 30:
-        return "over wight"
+        return "over weight"
     elif bmi < 35:
         return "obese"
     else:
@@ -33,24 +47,39 @@ def show_result(bmi):
 # main
 def main():
 
-    weight, height = user_input()
-    bmi = calculate_bmi(weight, height)
-    result = show_result(bmi)
-    bmi_txt, result_txt = bmi, result
-    print(f"{bmi_txt}, {result_txt}")
     root = tk.Tk()
-    root.title("Results")
-    root.geometry("300x300")
+    root.title("BMI Calculator")
+    root.geometry("1000x500")
 
-    label1 = ttk.Label(root, text=f"{bmi:.2f}", font=("Arial", 14), anchor="center")
-    label2 = ttk.Label(root, text=result_txt, font=("Arial", 14), anchor="center")
+    label_weight = ttk.Label(root, text="Weight (kg):", font=("Arial", 12))
+    label_weight.place(relx=0.1, rely=0.35, anchor="w")
+    entry_weight = ttk.Entry(root, width=20)
+    entry_weight.place(relx=0.3, rely=0.35, anchor="center")
 
-    label1.place(relx=0.5, rely=0.4, anchor="center")
-    label2.place(relx=0.5, rely=0.5, anchor="center")
+    label_height = ttk.Label(root, text="Height (m):", font=("Arial", 12))
+    label_height.place(relx=0.1, rely=0.55, anchor="w")
+    entry_height = ttk.Entry(root, width=20)
+    entry_height.place(relx=0.3, rely=0.55, anchor="center")
+
+    # weight, height = entry_weight, entry_height
+    # bmi = calculate_bmi(weight, height, label_bmi_value, label_category_value)
+
+    label_bmi_value = ttk.Label(root, text="---", font=("Arial", 12), anchor="center")
+    label_category_value = ttk.Label(root, text="---", font=("Arial", 12), anchor="center")
+
+    label_bmi_value.place(relx=0.9, rely=0.35, anchor="center")
+    label_category_value.place(relx=0.9, rely=0.55, anchor="center")
+
+    btn_calc = ttk.Button(
+    root,
+    text="محاسبه",
+    command=lambda: calculate_bmi(entry_weight, entry_height, label_bmi_value, label_category_value))
+
+    btn_calc.place(relx=0.5, rely=0.5, anchor="center")
+
 
     btn_close = ttk.Button(root, text="Exit", command=root.destroy)
-    btn_close.place(relx=0.5, rely=0.6, anchor="center")
-
+    btn_close.place(relx=0.5, rely=0.9, anchor="center")
     root.mainloop()
 
 
