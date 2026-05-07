@@ -35,15 +35,15 @@ def show_category(bmi):
     Returns BMI classification based on the BMI value.
     """
     if bmi < 18.5:
-        return "Under weight"
+        return "Under weight 🔵"
     elif bmi < 25:
-        return "Normal weight"
+        return "Normal weight 🟢"
     elif bmi < 30:
-        return "Over weight"
+        return "Over weight 🟡"
     elif bmi < 35:
-        return "Obese"
+        return "Obese 🟠"
     else:
-        return "Extremely obese"
+        return "Extremely obese 🔴"
 
 
 # Main GUI Window
