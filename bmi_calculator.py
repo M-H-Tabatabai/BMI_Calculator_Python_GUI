@@ -46,7 +46,6 @@ def show_category(bmi):
     else:
         return "Extremely obese", "red"
 
-
 # Main GUI Window
 def main():
 
@@ -116,6 +115,7 @@ def main():
 
     # Buttons
     # Calculate Button
+    
     btn_calc = ttk.Button(
         root,
         text="Calculate",
@@ -126,7 +126,9 @@ def main():
     btn_calc.place(relx=0.5, rely=0.45, anchor="center")
 
     # Exit Button
-    btn_close = ttk.Button(root, text="Exit", command=root.destroy)
+    style = ttk.Style()
+    style.configure("exit.TButton", foreground="red")
+    btn_close = ttk.Button(root, text="Exit", command=root.destroy, style="exit.TButton")
     btn_close.place(relx=0.5, rely=0.9, anchor="center")
 
     # Run the application loop
