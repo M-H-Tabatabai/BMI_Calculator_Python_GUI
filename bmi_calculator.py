@@ -19,10 +19,11 @@ def calculate_bmi(entry_weight, entry_height, label_bmi_value, label_category_va
 
         # Get BMI category
         category = show_category(bmi)
+        category, color = show_category(bmi)
 
         # Update output boxes
         label_bmi_value.config(text=f"{bmi:.2f}")
-        label_category_value.config(text=category)
+        label_category_value.config(text=category, fg=color)
 
     except ValueError:
         # Show error if the input is invalid
@@ -35,15 +36,15 @@ def show_category(bmi):
     Returns BMI classification based on the BMI value.
     """
     if bmi < 18.5:
-        return "Under weight 🔵"
+        return "Under weight", "blue"
     elif bmi < 25:
-        return "Normal weight 🟢"
+        return "Normal weight", "green"
     elif bmi < 30:
-        return "Over weight 🟡"
+        return "Over weight", "orange"
     elif bmi < 35:
-        return "Obese 🟠"
+        return "Obese", "darkorange"
     else:
-        return "Extremely obese 🔴"
+        return "Extremely obese", "red"
 
 
 # Main GUI Window
@@ -97,7 +98,7 @@ def main():
     )
     label_bmi_value.place(relx=0.9, rely=0.35, anchor="center")
 
-    label_category = ttk.Label(root, text="Category:", font=("Arial", 12))
+    label_category = ttk.Label(root, text="Category:", font=("Segoe UI Emoji", 12))
     label_category.place(relx=0.7, rely=0.55, anchor="w")
 
     label_category_value = tk.Label(
